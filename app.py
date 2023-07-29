@@ -7,10 +7,13 @@ app = Flask(__name__)
 def hello():
     return 'hello world'
 '''
-@app.route('/')
-def index():
-    return render_template('hello.html')
+# @app.route('/')
+# def index():
+#     return render_template('hello.html')
 
+@app.route('/welcome/<username>')
+def index(username):
+    return render_template('hello.html',name=username)
 
 @app.route('/new')
 def new():
