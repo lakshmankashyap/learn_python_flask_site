@@ -7,13 +7,13 @@ app = Flask(__name__)
 def hello():
     return 'hello world'
 '''
-# @app.route('/')
-# def index():
-#     return render_template('hello.html')
+@app.route('/')
+def index():
+    return render_template('hello.html')
 
-@app.route('/welcome/<username>')
-def index(username):
-    return render_template('hello.html',name=username)
+# @app.route('/welcome/<username>')
+# def index(username):
+#     return render_template('hello.html',name=username)
 
 @app.route('/new')
 def new():
@@ -67,6 +67,15 @@ def login():
     else:
         username = request.args.get('nm')
         return redirect(url_for('success'), name = username)
+@app.route('/student')
+def student():
+    return render_template('student.html')
+
+@app.route('/result', methods=['POST','GET'])
+def result():
+    if request.method =='POST':
+        result = request.form
+        return render_template('result.html', result=result)
 
 if __name__ == '__main__':
     app.run()
